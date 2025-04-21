@@ -70,4 +70,4 @@ export { getRandomConfig } from './utils'
 
 export * from './types'
 
-export { NotionAvatarGenerator } from '../components/NotionAvatarGenerator'
+export { NotionAvatarGenerator } from './NotionAvatarGenerator'

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { NotionAvatarGenerator } from '../../components/NotionAvatarGenerator';
+import { NotionAvatarGenerator } from '../../package/NotionAvatarGenerator';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
