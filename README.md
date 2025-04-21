@@ -27,6 +27,19 @@ import { NotionAvatarGenerator } from 'nextjs-notion-avatar';
   onCancel={() => { /* handle cancel */ }}
   onRandom={(config) => { /* handle random config */ }}
   onSave={(config) => { /* handle save config */ }}
+  actionButtonProps={{
+    background: '#000',
+    color: '#fff',
+    borderRadius: '0.75rem',
+    width: '180px',
+    fontSize: '1.125rem',
+    fontWeight: 600,
+    padding: '0.5rem 1.5rem',
+    className: 'transition-colors hover:bg-black/90',
+  }}
+  cancelLabel="Abort"
+  randomLabel="Surprise Me"
+  saveLabel="Confirm"
 />
 ```
 
@@ -76,6 +89,19 @@ import { NotionAvatarGenerator } from 'nextjs-notion-avatar';
   onCancel={() => { /* handle cancel */ }}
   onRandom={(config) => { /* handle random config */ }}
   onSave={(config) => { /* handle save config */ }}
+  actionButtonProps={{
+    background: '#000',
+    color: '#fff',
+    borderRadius: '0.75rem',
+    width: '180px',
+    fontSize: '1.125rem',
+    fontWeight: 600,
+    padding: '0.5rem 1.5rem',
+    className: 'transition-colors hover:bg-black/90',
+  }}
+  cancelLabel="Abort"
+  randomLabel="Surprise Me"
+  saveLabel="Confirm"
 />
 ```
 
@@ -83,6 +109,19 @@ import { NotionAvatarGenerator } from 'nextjs-notion-avatar';
 - `onCancel`: Optional function called when the Cancel button is pressed.
 - `onRandom`: Optional function called with the config string when Generate Random is pressed.
 - `onSave`: Optional function called with the config string when Save is pressed.
+- `actionButtonProps`: Optional object to override style/className for all action buttons (Cancel, Generate, Save). Supports:
+  - `className`: string — extra class names for the button
+  - `style`: React.CSSProperties — inline style object
+  - `background`: string — background color (e.g. `#000`)
+  - `color`: string — text color
+  - `width`: string or number — button width
+  - `fontSize`: string or number — font size
+  - `fontWeight`: string or number — font weight
+  - `borderRadius`: string or number — border radius
+  - `padding`: string — padding (e.g. `0.5rem 1.5rem`)
+- `cancelLabel`: Optional string to override the Cancel button label.
+- `randomLabel`: Optional string to override the Generate button label.
+- `saveLabel`: Optional string to override the Save button label.
 
 ---
 
