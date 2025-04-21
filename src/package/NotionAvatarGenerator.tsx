@@ -17,7 +17,8 @@
  * - onRandom: Optional function called with the config string when Generate Random is pressed.
  * - onSave: Optional function called with the config string when Save is pressed.
  * - actionButtonProps: Optional props to override style/className for action buttons (Cancel, Generate Random, Save).
- *   Accepts: { className?: string, style?: React.CSSProperties, color?: string, background?: string, width?: string|number, fontSize?: string|number, fontWeight?: string|number, borderRadius?: string|number, padding?: string, [key: string]: any }
+ *   Accepts: { className?: string, style?: React.CSSProperties, ...styleProps } (see below)
+ *   Style-only props (borderRadius, background, color, width, fontSize, fontWeight, padding) are only applied via the style prop and are not passed as DOM attributes.
  * - cancelLabel: Optional string to override the Cancel button label.
  * - randomLabel: Optional string to override the Generate Random button label.
  * - saveLabel: Optional string to override the Save button label.
@@ -162,6 +163,19 @@ export function NotionAvatarGenerator({ onCancel, onRandom, onSave, actionButton
     padding: actionButtonProps?.padding || undefined,
   };
 
+  // Remove style-only props from being spread on the button
+  const {
+    color,
+    background,
+    width,
+    fontSize,
+    fontWeight,
+    borderRadius,
+    padding,
+    style,
+    ...buttonPropsRest
+  } = actionButtonProps || {};
+
   return (
     <div className="navg-container">
       {/* Centered Avatar */}
@@ -219,7 +233,7 @@ export function NotionAvatarGenerator({ onCancel, onRandom, onSave, actionButton
         <button
           className={`navg-action-btn${actionButtonProps?.className ? ' ' + actionButtonProps.className : ''}`}
           style={actionBtnStyle}
-          {...actionButtonProps}
+          {...buttonPropsRest}
           onClick={handleCancel}
         >
           {cancelLabel || 'Cancel'}
@@ -227,7 +241,7 @@ export function NotionAvatarGenerator({ onCancel, onRandom, onSave, actionButton
         <button
           className={`navg-action-btn${actionButtonProps?.className ? ' ' + actionButtonProps.className : ''}`}
           style={actionBtnStyle}
-          {...actionButtonProps}
+          {...buttonPropsRest}
           onClick={handleRandom}
         >
           {randomLabel || 'Generate'}
@@ -235,7 +249,7 @@ export function NotionAvatarGenerator({ onCancel, onRandom, onSave, actionButton
         <button
           className={`navg-action-btn${actionButtonProps?.className ? ' ' + actionButtonProps.className : ''}`}
           style={actionBtnStyle}
-          {...actionButtonProps}
+          {...buttonPropsRest}
           onClick={handleSave}
         >
           {saveLabel || 'Save'}
