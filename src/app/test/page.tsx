@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { NotionAvatarGenerator } from '../../package/NotionAvatarGenerator';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 /**
  * Test page for demonstrating the NotionAvatarGenerator component.
