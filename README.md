@@ -2,7 +2,7 @@
 
 **This project is a fork and update of the original [react-notion-avatar](https://github.com/zonemeen/react-notion-avatar) (MIT, 2021) by [zonemeen](https://github.com/zonemeen).**
 
-This fork and update is maintained by **Joao Pedro Goncalves** ([GitHub](https://github.com/JoaoSobral/nextjs-notion-avatar)), under MIT 2025.
+This fork and update is maintained by **Joao Pedro Goncalves** ([GitHub](https://github.com/JoaoSobral/nextjs-notion-avatar)), **(MIT, 2025).**
 
 ---
 
