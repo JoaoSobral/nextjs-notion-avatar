@@ -6,6 +6,32 @@ This fork and update is maintained by **Joao Pedro Goncalves** ([GitHub](https:/
 
 ---
 
+## Getting Started (NPM Package)
+
+Install the package:
+
+```bash
+npm install nextjs-notion-avatar
+# or
+yarn add nextjs-notion-avatar
+# or
+pnpm add nextjs-notion-avatar
+```
+
+Import and use the NotionAvatarGenerator component:
+
+```jsx
+import { NotionAvatarGenerator } from 'nextjs-notion-avatar';
+
+<NotionAvatarGenerator
+  onCancel={() => { /* handle cancel */ }}
+  onRandom={(config) => { /* handle random config */ }}
+  onSave={(config) => { /* handle save config */ }}
+/>
+```
+
+---
+
 ## Getting Started (Next.js App)
 
 First, run the development server:
