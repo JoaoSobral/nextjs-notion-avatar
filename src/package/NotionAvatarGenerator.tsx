@@ -27,7 +27,7 @@ import React, { useState, useEffect } from 'react';
 import NotionAvatar from '../package';
 import { getRandomConfig } from '../package/utils';
 import type { AvatarConfig, AvatarPart } from '../package/types';
-import { Button } from '../components/ui/button';
+import { Button } from './ui/button';
 import { Palette } from 'lucide-react';
 import { HexColorPicker } from 'react-colorful';
 
