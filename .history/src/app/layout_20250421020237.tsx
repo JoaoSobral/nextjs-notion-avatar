@@ -2,7 +2,7 @@
 MIT License
 
 Original project: https://github.com/zonemeen/react-notion-avatar (c) 2021 zonemeen and contributors.
-This fork and update: (c) 2024 Joao Pedro Goncalves
+This fork and update: (c) 2025 Joao Pedro Goncalves: https://github.com/JoaoSobral/nextjs-notion-avatar
 */
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";

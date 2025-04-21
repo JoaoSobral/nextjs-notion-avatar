@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src/package",
+    "declaration": true,
+    "declarationDir": "dist",
+    "module": "commonjs",
+    "target": "es2019",
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/package/**/*"]
+} 
