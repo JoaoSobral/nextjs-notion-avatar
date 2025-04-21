@@ -1,0 +1,20 @@
+{
+  "tip.Face": "Face",
+  "tip.Eye": "Eye",
+  "tip.Eyebrow": "Eyebrow",
+  "tip.Glass": "Glass",
+  "tip.Hair": "Hair",
+  "tip.Mouth": "Mouth",
+  "tip.Nose": "Nose",
+  "tip.Beard": "Beard",
+  "tip.Accessory": "Accessory",
+  "tip.Detail": "Detail",
+  "tip.Shape": "Shape",
+  "tip.Flip": "Flip",
+  "tip.Palette": "Palette",
+  "tip.Random": "Random",
+  "tip.Config": "Config",
+  "tip.Download": "Download",
+  "Copy": "Copy",
+  "Copied": "Copied!"
+} 
