@@ -69,3 +69,5 @@ export default NotionAvatar
 export { getRandomConfig } from './utils'
 
 export * from './types'
+
+export { NotionAvatarGenerator } from '../components/NotionAvatarGenerator'

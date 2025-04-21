@@ -14,6 +14,7 @@ import Eye10 from './10'
 import Eye11 from './11'
 import Eye12 from './12'
 import Eye13 from './13'
+import Eye14 from './14'
 import { TypeProps } from '../types'
 
 const Eye: React.FC<TypeProps> = ({ type }) => {
@@ -59,6 +60,9 @@ const Eye: React.FC<TypeProps> = ({ type }) => {
     }
     case 13: {
       return <Eye13 />
+    }
+    case 14: {
+      return <Eye14 />
     }
     default: {
       return <Eye0 />

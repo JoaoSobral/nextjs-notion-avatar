@@ -102,6 +102,34 @@ Or as React props:
 | `shape`     | string | 'circle' | 'circle' , 'rounded' , 'square'      | Only for React Props |
 | `bgColor`   | string |          | Hexadecimal , RGB , HSL , Predefined | Only for React Props |
 
+## NotionAvatarGenerator Component
+
+A fully-featured avatar generator for Notion-style avatars, designed for use in Next.js and React projects.
+
+**Features:**
+- Interactive avatar part selection (face, eyes, hair, etc.)
+- Color picker for background
+- Random avatar generation
+- Save/cancel actions with callback support
+- SSR-safe (no hydration issues)
+
+### Usage
+
+```jsx
+import { NotionAvatarGenerator } from 'nextjs-notion-avatar';
+
+<NotionAvatarGenerator
+  onCancel={() => { /* handle cancel */ }}
+  onRandom={(config) => { /* handle random config */ }}
+  onSave={(config) => { /* handle save config */ }}
+/>
+```
+
+### Props
+- `onCancel`: Optional function called when the Cancel button is pressed.
+- `onRandom`: Optional function called with the config string when Generate Random is pressed.
+- `onSave`: Optional function called with the config string when Save is pressed.
+
 ---
 
 ## License

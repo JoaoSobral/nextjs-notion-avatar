@@ -14,8 +14,9 @@ import classnames from 'classnames';
 import { useTranslation } from '../utils/useTranslation';
 import { useRouter, usePathname } from 'next/navigation';
 
-import NotionAvatar, { getRandomConfig } from 'react-notion-avatar';
-import type { AvatarConfig, AvatarPart, ShapeTypes } from 'react-notion-avatar';
+import NotionAvatar from '../package';
+import { getRandomConfig } from '../package/utils';
+import type { AvatarConfig, AvatarPart, ShapeTypes } from '../package/types';
 
 import Header from '../components/Header';
 import AvatarEditor from '../components/AvatarEditor';

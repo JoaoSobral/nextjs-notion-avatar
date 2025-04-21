@@ -36,5 +36,3 @@ export type AvatarPart = keyof AvatarConfig
 declare const getRandomConfig: () => AvatarConfig
 
 declare const NotionAvatar: React.FC<NotionAvatarProps>
-
-export { NotionAvatar as default, getRandomConfig }
