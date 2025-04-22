@@ -107,8 +107,8 @@ import { NotionAvatarGenerator } from 'nextjs-notion-avatar';
 
 ### Props
 - `onCancel`: Optional function called when the Cancel button is pressed.
-- `onRandom`: Optional function called with the config string when Generate Random is pressed.
-- `onSave`: Optional function called with the config string when Save is pressed.
+- `onRandom`: Optional function called with the AvatarConfig object when Generate Random is pressed.
+- `onSave`: Optional function called with the AvatarConfig object when Save is pressed.
 - `actionButtonProps`: Optional object to override style/className for all action buttons (Cancel, Generate, Save). Supports:
   - `className`: string — extra class names for the button
   - `style`: React.CSSProperties — inline style object
@@ -120,7 +120,7 @@ import { NotionAvatarGenerator } from 'nextjs-notion-avatar';
   - `borderRadius`: string or number — border radius
   - `padding`: string — padding (e.g. `0.5rem 1.5rem`)
 - `cancelLabel`: Optional string to override the Cancel button label.
-- `randomLabel`: Optional string to override the Generate button label.
+- `randomLabel`: Optional string to override the Generate Random button label.
 - `saveLabel`: Optional string to override the Save button label.
 
 ---

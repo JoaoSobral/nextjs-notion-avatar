@@ -52,8 +52,8 @@ import Nose from './nose';
 
 interface NotionAvatarGeneratorProps {
   onCancel?: () => void;
-  onRandom?: (configString: string) => void;
-  onSave?: (configString: string) => void;
+  onRandom?: (config: AvatarConfig) => void;
+  onSave?: (config: AvatarConfig) => void;
   actionButtonProps?: React.ButtonHTMLAttributes<HTMLButtonElement> & {
     color?: string;
     background?: string;
@@ -132,22 +132,20 @@ export function NotionAvatarGenerator({ onCancel, onRandom, onSave, actionButton
   const handleRandom = () => {
     const randomConfig = getRandomConfig() as AvatarConfig;
     setConfig(randomConfig);
-    const configStr = configToString(randomConfig);
     if (onRandom) {
-      onRandom(configStr);
+      onRandom(randomConfig);
     } else {
-      alert(configStr);
+      alert(configToString(randomConfig));
     }
   };
 
   // Save outputs the config
   const handleSave = () => {
     if (!config) return;
-    const configStr = configToString(config);
     if (onSave) {
-      onSave(configStr);
+      onSave(config);
     } else {
-      alert(configStr);
+      alert(configToString(config));
     }
   };
 
