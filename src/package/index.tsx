@@ -41,6 +41,9 @@ const NotionAvatar: React.FC<NotionAvatarProps> = (props) => {
           shape in ShapeBorderRadius ? bgColor : 'rgba(255, 0, 0, 0)',
         overflow: 'hidden',
         borderRadius,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         ...style,
       }}
     >
@@ -48,6 +51,13 @@ const NotionAvatar: React.FC<NotionAvatarProps> = (props) => {
         viewBox="0 0 1080 1080"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        style={{
+          width: '100%',
+          height: '100%',
+          maxWidth: '100%',
+          maxHeight: '100%',
+        }}
+        preserveAspectRatio="xMidYMid meet"
       >
         <Face type={face} />
         <Eye type={eye} />

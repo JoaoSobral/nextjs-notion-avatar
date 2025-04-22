@@ -22,6 +22,7 @@
  * - cancelLabel: Optional string to override the Cancel button label.
  * - randomLabel: Optional string to override the Generate Random button label.
  * - saveLabel: Optional string to override the Save button label.
+ * - avatarSize: Optional string to override the avatar size.
  *
  * Usage:
  * ------
@@ -66,6 +67,7 @@ interface NotionAvatarGeneratorProps {
   cancelLabel?: string;
   randomLabel?: string;
   saveLabel?: string;
+  avatarSize?: string;
 }
 
 const avatarParts: { key: AvatarPart; label: string; Comp: any }[] = [
@@ -100,7 +102,16 @@ function configToString(config: AvatarConfig): string {
     .join(', ');
 }
 
-export function NotionAvatarGenerator({ onCancel, onRandom, onSave, actionButtonProps, cancelLabel, randomLabel, saveLabel }: NotionAvatarGeneratorProps) {
+export function NotionAvatarGenerator({ 
+  onCancel, 
+  onRandom, 
+  onSave, 
+  actionButtonProps, 
+  cancelLabel, 
+  randomLabel, 
+  saveLabel,
+  avatarSize
+}: NotionAvatarGeneratorProps) {
   const [config, setConfig] = useState<AvatarConfig | null>(null);
   const [bgColor, setBgColor] = useState<string>('#fff');
   const [showColorPicker, setShowColorPicker] = useState(false);
@@ -177,10 +188,9 @@ export function NotionAvatarGenerator({ onCancel, onRandom, onSave, actionButton
   return (
     <div className="navg-container">
       {/* Centered Avatar */}
-      <div className="navg-avatar">
+      <div className="navg-avatar" style={avatarSize ? { maxWidth: avatarSize, maxHeight: avatarSize } : undefined}>
         {config ? (
           <NotionAvatar
-            className="w-[200px] h-[200px]"
             config={config}
             shape="circle"
             bgColor={bgColor}
