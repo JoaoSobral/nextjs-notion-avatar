@@ -12,7 +12,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
-    "build": "tsc --project tsconfig.lib.json",
+    "build": "tsc --project tsconfig.lib.json && cp src/package/*.css dist/",
     "start": "next start",
     "lint": "next lint"
   },
