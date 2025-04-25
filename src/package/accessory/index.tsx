@@ -13,6 +13,7 @@ import Accessory9 from './9'
 import Accessory10 from './10'
 import Accessory11 from './11'
 import Accessory12 from './12'
+import Accessory13 from './13'
 import { TypeProps } from '../types'
 
 const Accessory: React.FC<TypeProps> = ({ type }) => {
@@ -55,6 +56,9 @@ const Accessory: React.FC<TypeProps> = ({ type }) => {
     }
     case 12: {
       return <Accessory12 />
+    }
+    case 13: {
+      return <Accessory13 />
     }
     default: {
       return <Accessory0 />

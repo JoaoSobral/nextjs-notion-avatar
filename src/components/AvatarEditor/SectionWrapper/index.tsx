@@ -1,20 +1,24 @@
-import React from 'react'
-
+import React, { JSX } from 'react'
+import { ShapeTypes } from '../../../package/types'
 import './index.scss'
+
 interface SectionProps {
   className?: string
   children: JSX.Element
   switchConfig?: () => void
   tip: string
   isSvgElement?: boolean
+  shape?: ShapeTypes
 }
+
 const sectionWrapper: React.FC<SectionProps> = (props) => {
-  const { className = '', children, switchConfig, tip, isSvgElement } = props
+  const { className = '', children, switchConfig, tip, isSvgElement, shape } = props
   return (
     <div
       className={'SectionWrapper ' + className}
       data-tip={tip}
       onClick={switchConfig}
+      style={shape ? { borderRadius: shape === 'circle' ? '100%' : shape === 'rounded' ? '6px' : '0' } : undefined}
     >
       <div className="w-12 h-12">
         <div className="childrenWrapper absolute top-0 left-0 w-full h-full flex items-center justify-center">

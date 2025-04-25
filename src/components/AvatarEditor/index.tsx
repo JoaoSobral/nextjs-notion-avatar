@@ -7,7 +7,7 @@ This fork and update: (c) 2025 Joao Pedro Goncalves: https://github.com/JoaoSobr
 import React, { useState, useRef, useEffect } from 'react'
 import classnames from 'classnames'
 import { HexColorPicker } from 'react-colorful'
-import type { AvatarConfig, AvatarPart, ShapeTypes } from 'react-notion-avatar'
+import type { AvatarConfig, AvatarPart, ShapeTypes } from '../../package/types'
 import { useTranslation } from '../../utils/useTranslation'
 
 import Accessory from '../../package/accessory'
@@ -206,6 +206,7 @@ const AvatarEditor: React.FC<EditorProps> = ({
         className="w-12 h-12 rounded-full p-2 mx-2"
         tip={t('tip.Shape')}
         switchConfig={() => switchShape(shape as ShapeTypes)}
+        shape={shape}
       >
         <div
           className={classnames('w-4 h-4 bg-black', {

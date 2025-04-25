@@ -31,7 +31,7 @@ const Header: React.FC = () => {
             p-id="2596"
           />
         </svg>
-        <h2 className="site-title">otion Avatar</h2>
+        <h2 className="site-title">Notion Avatar</h2>
       </div>
       <div className="header-right">
         <a

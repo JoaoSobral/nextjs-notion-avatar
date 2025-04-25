@@ -135,7 +135,7 @@ export default function Home() {
     <div className="App flex flex-col min-h-screen">
       <Header />
       <main className="flex-1 flex flex-col items-center justify-center">
-        <div id="notionAvatar" className="pb-32" style={{ backgroundColor: bgColor }}>
+        <div id="notionAvatar" className="pb-32">
           {config && (
             <NotionAvatar
               className={classnames('w-64 h-64 highres:w-80 highres:h-80', {
