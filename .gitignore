@@ -43,3 +43,5 @@ next-env.d.ts
 /dist
 
 pnpm-lock.yaml
+.github/workflows/.npmrc.npm
+.npmrc.github
