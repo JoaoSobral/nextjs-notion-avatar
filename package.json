@@ -1,6 +1,6 @@
 {
   "name": "nextjs-notion-avatar",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "A Next.js-ready fork and update of react-notion-avatar, for avatar rendering in Next.js projects.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
