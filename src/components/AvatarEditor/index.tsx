@@ -201,12 +201,12 @@ const AvatarEditor: React.FC<EditorProps> = ({
       >
         <Detail type={config.detail} />
       </SectionWrapper>
-      <SectionWrapper
-        isSvgElement={false}
-        className="w-12 h-12 rounded-full p-2 mx-2"
-        tip={t('tip.Shape')}
-        switchConfig={() => switchShape(shape as ShapeTypes)}
-        shape={shape}
+      <div className="divider w-0.5 h-5 rounded mx-2" />
+      <div
+        className="iconfont mx-2 cursor-pointer transition duration-300 flex items-center justify-center"
+        data-tip={t('tip.Shape')}
+        onClick={() => switchShape(shape as ShapeTypes)}
+        style={{ width: '3rem', height: '3rem' }}
       >
         <div
           className={classnames('w-4 h-4 bg-black', {
@@ -214,8 +214,7 @@ const AvatarEditor: React.FC<EditorProps> = ({
             rounded: shape === 'rounded',
           })}
         />
-      </SectionWrapper>
-      <div className="divider w-0.5 h-5 rounded mx-2" />
+      </div>
       <div
         className="iconfont mx-2 cursor-pointer transition duration-300"
         data-tip={t('tip.Flip')}

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Button } from '../components/ui/button';
-import { NotionAvatarGenerator } from './NotionAvatarGenerator';
+import { NotionAvatarGenerator } from '../package/NotionAvatarGenerator';
 import type { AvatarConfig, ShapeTypes } from '../package/types';
 import NotionAvatar from '../package';
 

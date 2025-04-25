@@ -36,7 +36,7 @@ export default function Home() {
   const pathname = usePathname();
   const [config, setConfig] = useState<AvatarConfig | null>(null);
   const [shape, setShape] = useState<ShapeTypes>('circle');
-  const [bgColor, setBgColor] = useState('#ffffff');
+  const [bgColor, setBgColor] = useState('#f5eee6');
   const [flipped, setFlipped] = useState(false);
   const [language, setLanguage] = useState(locale);
 
