@@ -1,6 +1,6 @@
 import React, { JSX } from 'react'
-import { ShapeTypes } from '../../../package/types'
 import './index.scss'
+import { ShapeTypes } from '../types'
 
 interface SectionProps {
   className?: string

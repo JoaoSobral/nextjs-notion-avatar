@@ -31,30 +31,31 @@
  * <NotionAvatarGenerator onCancel={...} onRandom={...} onSave={...} actionButtonProps={{ background: '#222', color: '#fff', className: 'my-custom-class' }} />
  */
 import React, { useState, useEffect } from 'react';
-import NotionAvatar from './';
-import { getRandomConfig } from './utils';
-import type { AvatarConfig, AvatarPart } from './types';
-import { Button } from './ui/button';
+import NotionAvatar from '../..';
+import { getRandomConfig } from '../../utils';
+import type { AvatarConfig, AvatarPart } from '../../types';
+import { Button } from '../../ui/button';
 import { Palette } from 'lucide-react';
 import { HexColorPicker } from 'react-colorful';
 import './notion-avatar-generator.css';
+import SectionWrapper from '../../SectionWrapper';
 
 // Avatar part SVGs/components
-import Accessory from './accessory';
-import Beard from './beard';
-import Detail from './detail';
-import Eye from './eye';
-import Eyebrow from './eyebrow';
-import Face from './face';
-import Glass from './glass';
-import Hair from './hair';
-import Mouth from './mouth';
-import Nose from './nose';
+import Accessory from '../../accessory';
+import Beard from '../../beard';
+import Detail from '../../detail';
+import Eye from '../../eye';
+import Eyebrow from '../../eyebrow';
+import Face from '../../face';
+import Glass from '../../glass';
+import Hair from '../../hair';
+import Mouth from '../../mouth';
+import Nose from '../../nose';
 
 interface NotionAvatarGeneratorProps {
   onCancel?: () => void;
-  onRandom?: (config: AvatarConfig) => void;
-  onSave?: (config: AvatarConfig) => void;
+  onRandom?: (config: AvatarConfig, bgColor: string) => void;
+  onSave?: (config: AvatarConfig, bgColor: string) => void;
   actionButtonProps?: React.ButtonHTMLAttributes<HTMLButtonElement> & {
     color?: string;
     background?: string;
@@ -144,7 +145,7 @@ export function NotionAvatarGenerator({
     const randomConfig = getRandomConfig() as AvatarConfig;
     setConfig(randomConfig);
     if (onRandom) {
-      onRandom(randomConfig);
+      onRandom(randomConfig, bgColor);
     } else {
       alert(configToString(randomConfig));
     }
@@ -154,7 +155,7 @@ export function NotionAvatarGenerator({
   const handleSave = () => {
     if (!config) return;
     if (onSave) {
-      onSave(config);
+      onSave(config, bgColor);
     } else {
       alert(configToString(config));
     }
@@ -202,21 +203,15 @@ export function NotionAvatarGenerator({
       {/* Selector Row */}
       <div className="navg-selector-row">
         {config && avatarParts.map(({ key, label, Comp }) => (
-          <div key={key} className="navg-selector">
-            <button
-              className="navg-btn"
-              onClick={() => handlePartClick(key)}
-              aria-label={key}
-              type="button"
-            >
-              <span style={{ width: 28, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <svg viewBox="0 0 1080 1080" width="28" height="28" fill="black">
-                  <Comp type={config[key]} />
-                </svg>
-              </span>
-            </button>
-            <span className="navg-label">{label}</span>
-          </div>
+          <SectionWrapper
+            key={key}
+            tip={label}
+            switchConfig={() => handlePartClick(key)}
+            isSvgElement={true}
+            className="mx-2"
+          >
+            <Comp type={config[key]} />
+          </SectionWrapper>
         ))}
         {/* Color Picker */}
         <div className="navg-selector" style={{ position: 'relative' }}>
@@ -225,8 +220,29 @@ export function NotionAvatarGenerator({
             onClick={() => setShowColorPicker((v) => !v)}
             aria-label="background"
             type="button"
+            style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
           >
-            <Palette className="w-6 h-6" fill={bgColor === '#fff' ? 'black' : 'white'} />
+            {/* Color swatch behind the icon */}
+            <span
+              style={{
+                position: 'absolute',
+                width: '1.6rem',
+                height: '1.6rem',
+                borderRadius: '50%',
+                background: bgColor,
+                border: '2px solid #ccc',
+                left: '50%',
+                top: '50%',
+                transform: 'translate(-50%, -50%)',
+                zIndex: 0,
+                boxSizing: 'border-box',
+              }}
+            />
+            <Palette
+              className="w-6 h-6"
+              style={{ position: 'relative', zIndex: 1 }}
+              fill={bgColor === '#fff' ? 'black' : 'white'}
+            />
           </button>
           <span className="navg-label">Colour</span>
           {showColorPicker && (

@@ -21,7 +21,7 @@ import Hair from '../../package/hair/index'
 import Mouth from '../../package/mouth/index'
 import Nose from '../../package/nose/index'
 
-import SectionWrapper from './SectionWrapper/index'
+import SectionWrapper from '../../package/SectionWrapper'
 import { AvatarConfigCount } from '../../package/const'
 import './index.scss'
 import { copyTextToClipboard } from '../../utils/copy'

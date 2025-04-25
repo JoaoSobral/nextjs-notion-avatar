@@ -80,4 +80,6 @@ export { getRandomConfig } from './utils'
 
 export * from './types'
 
-export { NotionAvatarGenerator } from './NotionAvatarGenerator'
+export { NotionAvatarGenerator } from './components/complex_avatar/NotionAvatarGenerator'
+
+export { default as SectionWrapper } from './SectionWrapper'

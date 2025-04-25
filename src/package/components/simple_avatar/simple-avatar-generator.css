@@ -1,0 +1,159 @@
+/* NotionAvatarGenerator Portable Styles */
+
+.navg-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.navg-avatar {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border: 1px solid #fff;
+  position: relative;
+}
+
+.navg-avatar svg {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.navg-selector-row {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.navg-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 3.5rem;
+  min-width: 2.5rem;
+}
+
+.navg-btn {
+  border: none;
+  border-radius: 9999px;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.navg-btn:hover {
+  background: #f3f3f3;
+}
+
+.navg-label {
+  font-size: 0.7rem;
+  color: #888;
+  margin-top: 0.18rem;
+}
+
+.navg-color-picker {
+  position: absolute;
+  bottom: 3.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  background: #fff;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  border: 1px solid #eee;
+}
+
+.navg-actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding-bottom: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.navg-action-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  min-width: unset;
+  box-shadow: none;
+  margin: 0;
+}
+.navg-action-btn:hover {
+  background: #222;
+}
+
+/* Responsive tweaks for small dialogs */
+@media (max-width: 500px) {
+  .navg-avatar {
+    max-width: 150px;
+  }
+  .navg-selector {
+    width: 2.2rem;
+    min-width: 1.8rem;
+  }
+  .navg-btn {
+    width: 1.7rem;
+    height: 1.7rem;
+  }
+  .navg-action-btn {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.85rem;
+    min-width: 70px;
+  }
+}
+
+@media (max-width: 350px) {
+  .navg-avatar {
+    max-width: 120px;
+  }
+  .navg-selector {
+    width: 1.8rem;
+    min-width: 1.5rem;
+  }
+  .navg-btn {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.navg-avatar svg, .navg-avatar svg * {
+  stroke: black !important;
+}
+
+.navg-avatar svg [fill="#ffffff"] {
+  fill: #fff !important;
+} 

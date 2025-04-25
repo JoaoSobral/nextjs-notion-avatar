@@ -13,6 +13,8 @@ import confetti from 'canvas-confetti';
 import classnames from 'classnames';
 import { useTranslation } from '../utils/useTranslation';
 import { useRouter, usePathname } from 'next/navigation';
+import Link from 'next/link';
+import { FlaskConical } from 'lucide-react';
 
 import NotionAvatar from '../package';
 import { getRandomConfig } from '../package/utils';
@@ -164,6 +166,19 @@ export default function Home() {
           )}
         </div>
       </main>
+      {/* Test Components Button */}
+      <div className="flex justify-center mt-8 mb-4">
+        <Link href="/templates" passHref legacyBehavior>
+          <a
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-semibold shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-200 text-lg"
+            style={{ letterSpacing: '0.01em' }}
+            aria-label="Test Avatar Generators"
+          >
+            <FlaskConical className="w-6 h-6" />
+            Test the Avatar Components (for your website)
+          </a>
+        </Link>
+      </div>
       <Footer language={language} onLanguageChange={onChangeLanguage} />
       <div className="gradient-bg">
         <div className="gradient-top" />
