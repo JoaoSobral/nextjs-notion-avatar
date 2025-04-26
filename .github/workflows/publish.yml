@@ -23,7 +23,10 @@ jobs:
 
       - name: Check pnpm version
         run: pnpm -v
-
+      
+      - name: List files
+        run: ls -l
+      
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -33,6 +36,7 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+        working-directory: ${{ github.workspace }}  # or the correct path if your code is in a subfolder
 
       - name: Build package
         run: pnpm run build
