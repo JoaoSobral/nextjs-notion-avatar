@@ -14,11 +14,11 @@ jobs:
     strategy:
       matrix:
         include:
-          - registry_name: npm
-            registry_url: 'https://registry.npmjs.org/'
+          - registryName: npm
+            registryUrl: 'https://registry.npmjs.org/'
             access: 'public'
-          - registry_name: github
-            registry_url: 'https://npm.pkg.github.com/'
+          - registryName: github
+            registryUrl: 'https://npm.pkg.github.com/'
             access: ''
 
     steps:
@@ -43,21 +43,23 @@ jobs:
       - name: Build package
         run: pnpm run build
 
+      # Generate .npmrc dynamically for npm registry
       - name: Generate .npmrc dynamically
+        if: matrix.registryName == 'npm'
         run: |
-          echo "//${{ matrix.registry_url#https:// }}/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
+          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
           echo "always-auth=true" >> ~/.npmrc
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        if: matrix.registry_name == 'npm'
 
+      # Generate .npmrc dynamically for GitHub registry
       - name: Generate .npmrc dynamically (GitHub)
+        if: matrix.registryName == 'github'
         run: |
-          echo "//${{ matrix.registry_url#https:// }}/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
           echo "always-auth=true" >> ~/.npmrc
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: matrix.registry_name == 'github'
 
       - name: Check if package version already published
         id: version-check
@@ -65,9 +67,9 @@ jobs:
           PKG_NAME=$(node -p "require('./package.json').name")
           PKG_VERSION=$(node -p "require('./package.json').version")
 
-          echo "Checking $PKG_NAME@$PKG_VERSION on ${{ matrix.registry_url }}"
+          echo "Checking $PKG_NAME@$PKG_VERSION on ${{ matrix.registryUrl }}"
 
-          if npm view "$PKG_NAME@$PKG_VERSION" --registry=${{ matrix.registry_url }} > /dev/null 2>&1; then
+          if npm view "$PKG_NAME@$PKG_VERSION" --registry=${{ matrix.registryUrl }} > /dev/null 2>&1; then
             echo "Already published!"
             echo "published=true" >> $GITHUB_ENV
           else
@@ -75,20 +77,20 @@ jobs:
             echo "published=false" >> $GITHUB_ENV
           fi
 
+      # Publish to npm registry if not already published
       - name: Publish package
-        if: env.published == 'false'
+        if: env.published == 'false' && matrix.registryName == 'npm'
         run: |
-          echo "Publishing to ${{ matrix.registry_name }}..."
-          npm publish --registry=${{ matrix.registry_url }} ${{ matrix.access && format('--access {0}', matrix.access) }} --no-git-checks
+          echo "Publishing to ${{ matrix.registryName }}..."
+          npm publish --registry=${{ matrix.registryUrl }} --access=${{ matrix.access }} --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        if: matrix.registry_name == 'npm'
 
+      # Publish to GitHub registry if not already published
       - name: Publish package (GitHub)
-        if: env.published == 'false'
+        if: env.published == 'false' && matrix.registryName == 'github'
         run: |
-          echo "Publishing to ${{ matrix.registry_name }}..."
-          npm publish --registry=${{ matrix.registry_url }} --no-git-checks
+          echo "Publishing to ${{ matrix.registryName }}..."
+          npm publish --registry=${{ matrix.registryUrl }} --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: matrix.registry_name == 'github'
