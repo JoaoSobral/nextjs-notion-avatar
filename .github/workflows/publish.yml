@@ -80,6 +80,14 @@ jobs:
             echo "published=false" >> $GITHUB_ENV
           fi
 
+      # Remove scope from package name for npmjs.org before publishing
+      - name: Remove scope from package name for npmjs.org
+        if: env.published == 'false' && matrix.registryName == 'npm'
+        run: |
+          cp package.json package.json.bak
+          jq '.name = "nextjs-notion-avatar"' package.json > package.tmp.json
+          mv package.tmp.json package.json
+
       # Publish to npm registry if not already published
       - name: Publish package
         if: env.published == 'false' && matrix.registryName == 'npm'
@@ -88,6 +96,11 @@ jobs:
           pnpm publish --registry=${{ matrix.registryUrl }} --access=${{ matrix.access }} --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Restore original package.json after npm publish
+      - name: Restore original package.json
+        if: env.published == 'false' && matrix.registryName == 'npm'
+        run: mv package.json.bak package.json
 
       # Publish to GitHub registry if not already published
       - name: Publish package (GitHub)
