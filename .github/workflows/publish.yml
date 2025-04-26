@@ -11,15 +11,21 @@ jobs:
       contents: read
       packages: write
 
+    strategy:
+      matrix:
+        registry: 
+          - name: npm
+            url: 'https://registry.npmjs.org/'
+            token: '${{ secrets.NPM_TOKEN }}'
+            access: 'public'
+          - name: github
+            url: 'https://npm.pkg.github.com/'
+            token: '${{ secrets.GITHUB_TOKEN }}'
+            access: ''
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10.9.0
-          run_install: false
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -27,20 +33,41 @@ jobs:
           node-version: '20.x'
           cache: 'pnpm'
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.9.0
+          run_install: false
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build package
         run: pnpm run build
 
-      - name: Publish to GitHub Packages
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate .npmrc dynamically
         run: |
-          npm publish --registry=https://npm.pkg.github.com --no-git-checks
+          echo "//${{ matrix.registry.url#https:// }}/:_authToken=${{ matrix.registry.token }}" > ~/.npmrc
+          echo "always-auth=true" >> ~/.npmrc
 
-      - name: Publish to npm Registry
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Check if package version already published
+        id: version-check
         run: |
-          npm publish --access public --no-git-checks
+          PKG_NAME=$(node -p "require('./package.json').name")
+          PKG_VERSION=$(node -p "require('./package.json').version")
+
+          echo "Checking $PKG_NAME@$PKG_VERSION on ${{ matrix.registry.url }}"
+
+          if npm view "$PKG_NAME@$PKG_VERSION" --registry=${{ matrix.registry.url }} > /dev/null 2>&1; then
+            echo "Already published!"
+            echo "published=true" >> $GITHUB_ENV
+          else
+            echo "Not yet published."
+            echo "published=false" >> $GITHUB_ENV
+          fi
+
+      - name: Publish package
+        if: env.published == 'false'
+        run: |
+          echo "Publishing..."
+          npm publish --registry=${{ matrix.registry.url }} ${{ matrix.registry.access && format('--access {0}', matrix.registry.access) }} --no-git-checks
