@@ -2,7 +2,7 @@
   "name": "@joaosobral/nextjs-notion-avatar",
   "version": "1.1.6",
   "description": "A Next.js-ready fork and update of react-notion-avatar, for avatar rendering in Next.js projects.",
-  "packageManager": "pnpm@9.15.9",
+  "packageManager": "pnpm@10.9.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -13,7 +13,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
-    "build": "tsc --project tsconfig.lib.json && cp src/package/*.css dist/",
+    "build": "tsc --project tsconfig.lib.json && (cp src/package/*.css dist/ 2>/dev/null || true)",
     "start": "next start",
     "lint": "next lint"
   },
@@ -40,7 +40,6 @@
     "lucide-react": "^0.503.0",
     "mini-css-extract-plugin": "^2.9.2",
     "next": "15.3.1",
-    "nextjs-notion-avatar": "^1.1.5",
     "react": "^19.1.0",
     "react-colorful": "^5.6.1",
     "sass": "^1.87.0",
