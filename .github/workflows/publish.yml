@@ -17,6 +17,9 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
+        with:
+          version: 10.8.1
+          run_install: false
 
       - name: Check pnpm version
         run: pnpm -v
