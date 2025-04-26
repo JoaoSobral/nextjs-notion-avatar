@@ -45,10 +45,10 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pnpm publish --registry=https://npm.pkg.github.com --no-git-checks
+          npm publish --registry=https://npm.pkg.github.com --no-git-checks
 
       - name: Publish to npm Registry
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          pnpm publish --access public --no-git-checks
+          npm publish --access public --no-git-checks
