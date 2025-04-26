@@ -25,17 +25,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          cache: 'pnpm'
-
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10.9.0
           run_install: false
+
+      - name: Check pnpm version
+        run: pnpm -v
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -69,7 +72,7 @@ jobs:
 
           echo "Checking $PKG_NAME@$PKG_VERSION on ${{ matrix.registryUrl }}"
 
-          if npm view "$PKG_NAME@$PKG_VERSION" --registry=${{ matrix.registryUrl }} > /dev/null 2>&1; then
+          if pnpm view "$PKG_NAME@$PKG_VERSION" --registry=${{ matrix.registryUrl }} > /dev/null 2>&1; then
             echo "Already published!"
             echo "published=true" >> $GITHUB_ENV
           else
@@ -82,7 +85,7 @@ jobs:
         if: env.published == 'false' && matrix.registryName == 'npm'
         run: |
           echo "Publishing to ${{ matrix.registryName }}..."
-          npm publish --registry=${{ matrix.registryUrl }} --access=${{ matrix.access }} --no-git-checks
+          pnpm publish --registry=${{ matrix.registryUrl }} --access=${{ matrix.access }} --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -91,6 +94,6 @@ jobs:
         if: env.published == 'false' && matrix.registryName == 'github'
         run: |
           echo "Publishing to ${{ matrix.registryName }}..."
-          npm publish --registry=${{ matrix.registryUrl }} --no-git-checks
+          pnpm publish --registry=${{ matrix.registryUrl }} --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
