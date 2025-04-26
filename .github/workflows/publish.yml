@@ -41,6 +41,28 @@ jobs:
       - name: Build package
         run: pnpm run build
 
+      - name: Check if NPM_TOKEN is set
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "NPM_TOKEN is NOT set"
+            exit 1
+          else
+            echo "NPM_TOKEN is set"
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Check if GITHUB_TOKEN is set
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "NODE_AUTH_TOKEN is NOT set"
+            exit 1
+          else
+            echo "NODE_AUTH_TOKEN is set"
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Publish to GitHub Packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
